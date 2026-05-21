@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chuyển Chữ Thành Số</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:system-ui,sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+    margin-top:0;
+    text-align:center;
+    font-size:32px;
+}
+
+.desc{
+    text-align:center;
+    opacity:0.8;
+    margin-bottom:25px;
+}
+
+textarea{
+    width:100%;
+    min-height:140px;
+    resize:vertical;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    padding:16px;
+    font-size:18px;
+    background:#0f172a;
+    color:white;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    color:white;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.result{
+    margin-top:25px;
+    background:#020617;
+    border-radius:16px;
+    padding:20px;
+    min-height:80px;
+    font-size:24px;
+    line-height:1.6;
+    word-break:break-word;
+}
+
+.example{
+    margin-top:15px;
+    opacity:0.7;
+    font-size:14px;
+}
+.footer{
+    margin-top:25px;
+    text-align:center;
+    font-size:14px;
+    opacity:0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Chuyển Chữ → Số</h1>
+
+    <div class="desc">
+        Nhập chữ số bằng tiếng Việt để chuyển thành số
+    </div>
+
+    <textarea id="inputText"
+    placeholder="Ví dụ: không một hai ba bốn năm sáu bảy tám chín"></textarea>
+
+    <button onclick="convertTextToNumber()">
+        CHUYỂN ĐỔI
+    </button>
+
+    <div class="result" id="result">
+        Kết quả sẽ hiển thị ở đây...
+    </div>
+
+    <div class="example">
+        Hỗ trợ: không, một, hai, ba, bốn, năm, sáu, bảy, tám, chín
+    </div>
+<div class="footer">
+    © 2026 · Made by Trần Thành Phát
+</div>
+</div>
+<!-- Footer -->
+
+<script>
+function convertTextToNumber(){
+
+    const text = document
+        .getElementById("inputText")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const dictionary = {
+        "khong": "0",
+        "không": "0",
+        "mot": "1",
+        "một": "1",
+        "hai": "2",
+        "ba": "3",
+        "bon": "4",
+        "bốn": "4",
+        "nam": "5",
+        "năm": "5",
+        "sau": "6",
+        "sáu": "6",
+        "bay": "7",
+        "bảy": "7",
+        "tam": "8",
+        "tám": "8",
+        "chin": "9",
+        "chín": "9"
+    };
+
+    const words = text.split(/\s+/);
+
+    let result = "";
+
+    words.forEach(word => {
+        if(dictionary[word] !== undefined){
+            result += dictionary[word];
+        }
+    });
+
+    document.getElementById("result").innerText =
+        result !== ""
+        ? result
+        : "Không tìm thấy số hợp lệ!";
+}
+</script>
+
+</body>
+</html>
